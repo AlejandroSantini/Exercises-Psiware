@@ -62,16 +62,20 @@ const numbersEven = (numbers) => {
 
 console.log(`Los numeros pares son: ${numbersEven(numbers)}`);
 
+console.log('');
+console.log('');
 console.log('||||||--------EJERCICIO 2: Algoritmos II--------||||||');
-
-
-console.log('-------EJERCICIO a-------');
 
 const data = {
     "Key1": [1,4,5],
     "Key2": [4,10,3],
     "Key3": [8,2,6]
 }
+
+console.log('Dada la siguiente colección de datos:');
+console.log(data);
+
+console.log('-------EJERCICIO a-------');
 
 const numberLargest = (data) => {
     let keys = Object.keys(data);
@@ -89,6 +93,12 @@ console.log(numberLargest(data));
 
 console.log('-------EJERCICIO b-------');
 
+const dataReset = {
+    "Key1": [1,4,5],
+    "Key2": [4,10,3],
+    "Key3": [8,2,6]
+}
+
 const keysOrdered = (data) => {
     let keys = Object.keys(data);
     for (let i=0; i < keys.length; i++) {
@@ -99,30 +109,67 @@ const keysOrdered = (data) => {
 }
 
 console.log('Los elementos ordenados dentro de cada key:');
-console.log(keysOrdered(data));
+console.log(keysOrdered(dataReset));
 
 console.log('-------EJERCICIO c-------');
 
-// const calcWeight = (data) => {
+const dataReset2 = {
+    "Key1": [10,4,5],
+    "Key2": [4,10,3],
+    "Key3": [8,2,6]
+}
+
+const orderForWeight = (data) => {
+    let keys = Object.keys(data);
+    let arrayWeightKeys = [];
+    let maxWeight = 0;
+    for (let i=0; i < keys.length; i++) {
+        let key = keys[i];
+        let keyWeight = data[key].reduce((a, b) => a + b);
+        if (keyWeight > maxWeight) {
+            maxWeight = keyWeight;
+            arrayWeightKeys.push(keys[i]);
+        }
+        if (keyWeight < maxWeight) {
+            let position = arrayWeightKeys.indexOf(keys[i]) + 2;
+            arrayWeightKeys.splice(position, 0, keys[i]);
+        }
+    }
+    return arrayWeightKeys;
+}
+
+// const orderForWeight = (data) => {
 //     let keys = Object.keys(data);
-//     // let arrayWeightKeys = [];
-//     let weight = 0;
+//     let arrayWeightKeys = [];
+//     let arrayWeightKeysPosition = [];
 //     for (let i=0; i < keys.length; i++) {
 //         let key = keys[i];
-//         keyWeight = data[key].reduce((a, b) => a + b);
-//         if (keyWeight > weight) {
-//             weight = keyWeight;
-//         }
-
-//         }
-//         //arrayWeightKeys.push(keyWeight);
+//         let keyWeight = data[key].reduce((a, b) => a + b);
+//         arrayWeightKeysPosition.push(keyWeight);
 //     }
+//     let arrayWeightKeysPositionOrdered = arrayWeightKeysPosition.sort((a, b) => b - a);
+//     for (let i=0; i < keys.length; i++) {
+//         let key = keys[i];
+//         let keyWeight = data[key].reduce((a, b) => a + b);
+//         arrayWeightKeysPosition.push(keyWeight);
+//         noRepArrayEvenKeys = arrayWeightKeysPositionOrdered.forEach((item) => {
+//             if (!noRepeat.includes(item)) {
+//                 noRepeat.push(item);
+//             }
+//             return noRepeat;
+//         });
+//         let position = noRepArrayEvenKeys.indexOf(keyWeight);
+//         arrayWeightKeys.splice(position, 0, keys[i]);
+//     }
+//     return arrayWeightKeys;
+// }
 
-// console.log(calcWeight(data));
+console.log('Keys ordenadas de menor a mayor segun el peso de cada una:');
+console.log(orderForWeight(dataReset2));
 
 console.log('-------EJERCICIO d-------');
 
-const dataReset = {
+const dataReset3 = {
     "Key1": [1,4,5],
     "Key2": [4,10,3],
     "Key3": [8,2,6]
@@ -152,45 +199,48 @@ const keyValuesEven = (data) => {
     return data;
 }
 
-console.log(keyValuesEven(dataReset));
+console.log('La colección de datos con los valores pares de cada key (Key4):');
+console.log(keyValuesEven(dataReset3));
 
+console.log('');
+console.log('');
 console.log('||||||--------EJERCICIO 3: Modelado--------||||||');
 
 const dataCars = [
     {
-    "marca": "Ford Focus",
-    "patente": "XDU 667",
-    "modelo": 2015,
-    "precio": 2900000,
-    "seguro": true,
+    "brand": "Ford Focus",
+    "licensePlate": "XDU 667",
+    "model": 2015,
+    "price": 2900000,
+    "carInsurance": true,
     },
     {
-    "marca": "Citroen DS3",
-    "patente": "LIW 460",
-    "modelo": 2012,
-    "precio": 2600000,
-    "seguro": true,
+    "brand": "Citroen DS3",
+    "licensePlate": "LIW 460",
+    "model": 2012,
+    "price": 2600000,
+    "carInsurance": true,
     },
     {
-    "marca": "Chevrolet Cruze",
-    "patente": "XHT 356",
-    "modelo": 2015,
-    "precio": 3100000,
-    "seguro": true,
+    "brand": "Chevrolet Cruze",
+    "licensePlate": "XHT 356",
+    "model": 2015,
+    "price": 3100000,
+    "carInsurance": true,
     },
     {
-    "marca": "Volkswagen Gol Trend",
-    "patente": "KFT 222",
-    "modelo": "2011",
-    "precio": 1500000,
-    "seguro": true,
+    "brand": "Volkswagen Gol Trend",
+    "licensePlate": "KFT 222",
+    "model": "2011",
+    "price": 1500000,
+    "carInsurance": true,
     },
     {
-    "marca": "Renault 4L",
-    "patente": "DSW 388",
-    "modelo": 1968,
-    "precio": 320000,
-    "seguro": false,
+    "brand": "Renault 4L",
+    "licensePlate": "DSW 388",
+    "model": 1968,
+    "price": 320000,
+    "carInsurance": false,
     }
 ]
 
@@ -204,9 +254,9 @@ const moreExpensive = (data) => {
     let brand = '';
     for (let i=0; i < keys.length; i++) {
         let key = keys[i];
-        if (data[key].precio > moreExpensive) {
-            moreExpensive = data[key].precio;
-            brand = data[key].marca;
+        if (data[key].price > moreExpensive) {
+            moreExpensive = data[key].price;
+            brand = data[key].brand;
         }
     }
     return `El auto mas caro es un ${brand} con un precio de $${moreExpensive}`;
@@ -222,9 +272,9 @@ const older = (data) => {
     let brand = '';
     for (let i=0; i < keys.length; i++) {
         let key = keys[i];
-        if (data[key].modelo < older) {
-            older = data[key].modelo;
-            brand = data[key].marca;
+        if (data[key].model < older) {
+            older = data[key].model;
+            brand = data[key].brand;
         }
     }
     return `El auto mas viejo es un ${brand} el cual es del año ${older}`;
@@ -240,9 +290,9 @@ const licensePlateX = (data) => {
     let brand = [];
     for (let i=0; i < keys.length; i++) {
         let key = keys[i];
-        if (data[key].patente.charAt(0) === 'X') {
-            brand.push(data[key].marca);
-            licensePlateX.push(data[key].patente);
+        if (data[key].licensePlate.charAt(0) === 'X') {
+            brand.push(data[key].brand);
+            licensePlateX.push(data[key].licensePlate);
         }
     }
     return `El/los auto/s: ${brand}, poseen patente/s que comience con X, patente/s: ${licensePlateX} respectivamente`;
@@ -258,9 +308,9 @@ const minPrice = (data, price) => {
     let brand = [];
     for (let i=0; i < keys.length; i++) {
         let key = keys[i];
-        if (data[key].precio > price) {
-            brand.push(data[key].marca);
-            priceCars.push(data[key].precio);
+        if (data[key].price > price) {
+            brand.push(data[key].brand);
+            priceCars.push(data[key].price);
         }
     }
     return `El/los auto/s: ${brand}, superan el precio indicado con valor/es de $${priceCars} respectivamente`;
@@ -272,16 +322,16 @@ console.log(minPrice(dataCars, priceVar));
 
 console.log('-------EJERCICIO e-------');
 
-const carInsurance = (data) => {
+const hasCarInsurance = (data) => {
     let keys = Object.keys(data);
     let brand = [];
     for (let i=0; i < keys.length; i++) {
         let key = keys[i];
-        if (data[key].seguro) {
-            brand.push(data[key].marca);
+        if (data[key].carInsurance) {
+            brand.push(data[key].brand);
         }
     }
-    return `Solo el/los auto/s: ${brand} poseen seguro`;
+    return `El/los auto/s: ${brand} poseen seguro`;
 }
 
-console.log(carInsurance(dataCars));
+console.log(hasCarInsurance(dataCars));
