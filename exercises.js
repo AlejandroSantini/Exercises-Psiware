@@ -114,55 +114,28 @@ console.log(keysOrdered(dataReset));
 console.log('-------EJERCICIO c-------');
 
 const dataReset2 = {
-    "Key1": [10,4,5],
+    "Key1": [1,4,5],
     "Key2": [4,10,3],
     "Key3": [8,2,6]
 }
 
+
+
 const orderForWeight = (data) => {
     let keys = Object.keys(data);
-    let arrayWeightKeys = [];
-    let maxWeight = 0;
+    let arrayKeysWeight = [];
+    let weight = 0;
     for (let i=0; i < keys.length; i++) {
         let key = keys[i];
-        let keyWeight = data[key].reduce((a, b) => a + b);
-        if (keyWeight > maxWeight) {
-            maxWeight = keyWeight;
-            arrayWeightKeys.push(keys[i]);
-        }
-        if (keyWeight < maxWeight) {
-            let position = arrayWeightKeys.indexOf(keys[i]) + 2;
-            arrayWeightKeys.splice(position, 0, keys[i]);
-        }
+        let object = {};
+        weight = data[key].reduce((a, b) => a + b);
+        object.key = key;
+        object.weight = weight;
+        arrayKeysWeight.push(object);
     }
-    return arrayWeightKeys;
+    let arrayKeyWeightOrdered = arrayKeysWeight.sort((a, b) => a.weight - b.weight);
+    return arrayKeyWeightOrdered;
 }
-
-// const orderForWeight = (data) => {
-//     let keys = Object.keys(data);
-//     let arrayWeightKeys = [];
-//     let arrayWeightKeysPosition = [];
-//     for (let i=0; i < keys.length; i++) {
-//         let key = keys[i];
-//         let keyWeight = data[key].reduce((a, b) => a + b);
-//         arrayWeightKeysPosition.push(keyWeight);
-//     }
-//     let arrayWeightKeysPositionOrdered = arrayWeightKeysPosition.sort((a, b) => b - a);
-//     for (let i=0; i < keys.length; i++) {
-//         let key = keys[i];
-//         let keyWeight = data[key].reduce((a, b) => a + b);
-//         arrayWeightKeysPosition.push(keyWeight);
-//         noRepArrayEvenKeys = arrayWeightKeysPositionOrdered.forEach((item) => {
-//             if (!noRepeat.includes(item)) {
-//                 noRepeat.push(item);
-//             }
-//             return noRepeat;
-//         });
-//         let position = noRepArrayEvenKeys.indexOf(keyWeight);
-//         arrayWeightKeys.splice(position, 0, keys[i]);
-//     }
-//     return arrayWeightKeys;
-// }
 
 console.log('Keys ordenadas de menor a mayor segun el peso de cada una:');
 console.log(orderForWeight(dataReset2));
