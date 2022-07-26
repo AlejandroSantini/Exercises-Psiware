@@ -30,7 +30,7 @@ console.log(`El mayor numero es (con funcion  de javascript): ${largestNumFuncti
 
 console.log('-------EJERCICIO 2-------');
 
-numbersOrdered = numbers.sort((a, b) => a - b)
+numbersOrdered = numbers.sort((a, b) => a - b);
 
 console.log(`La colección de elementos ordenada es: ${numbersOrdered}`);
 
@@ -38,7 +38,7 @@ console.log('-------EJERCICIO 2.b-------');
 
 const evenPosition = (numbers) => {
     let positions = [];
-    for (let i = 1; i < numbers.length; i++) {
+    for (let i = 0; i < numbers.length; i++) {
         if (numbers[i] % 2 == 0) {
             positions.push(i);
         }
@@ -152,7 +152,7 @@ const deleteRepeated = (array) => {
     const noRepeat = [];
     for(var i = 0; i < array.length; i++) {
       const item = array[i];
-      if (!noRepeat.includes(array[i])) {
+      if (!noRepeat.includes(item)) {
         noRepeat.push(item);
       }
     }
